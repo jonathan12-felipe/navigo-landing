@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Navigo Essence</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Tipografía elegante y moderna -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navigo-blue: #1e90c2;
+            --navigo-aqua: #2ee0e6;
+            --navigo-white: #fff;
+            --navigo-gray: #f5fafd;
+            --navigo-dark: #194b5c;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Montserrat', Arial, sans-serif;
+            background: var(--navigo-gray);
+            color: var(--navigo-dark);
+        }
+
+        /* HEADER */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 22px 7vw 16px 7vw;
+            background: var(--navigo-white);
+            box-shadow: 0 2px 12px #b8e6f94a;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 2.1rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            color: var(--navigo-blue);
+        }
+
+        nav {
+            display: flex;
+            gap: 2vw;
+            align-items: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--navigo-dark);
+            font-size: 1.1rem;
+            padding: 8px 4px;
+            border-radius: 3px;
+            font-weight: 500;
+            transition: background 0.18s, color 0.18s;
+        }
+
+        nav a:hover {
+            background: var(--navigo-blue);
+            color: #fff;
+        }
+
+        .btn-main {
+            background: var(--navigo-blue);
+            color: #fff;
+            border: none;
+            border-radius: 40px;
+            padding: 13px 36px 13px 28px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 2px 10px #1e90c240;
+            transition: background 0.23s;
+            margin-left: 1vw;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-main:after {
+            content: '▶';
+            font-size: 1.25em;
+            margin-left: 10px;
+            transition: margin 0.15s;
+        }
+
+        .btn-main:hover,
+        .btn-main:focus {
+            background: var(--navigo-aqua);
+            color: var(--navigo-dark);
+        }
+
+        /* HERO */
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 50px 6vw 40px 6vw;
+            background: linear-gradient(120deg, var(--navigo-gray) 80%, #e0f7fa 100%);
+        }
+
+        .hero img {
+            width: 240px;
+            max-width: 80vw;
+            margin-bottom: 22px;
+            filter: drop-shadow(0 8px 36px #51d8ef23);
+            border-radius: 24px;
+            background: #fff;
+        }
+
+        .hero-title {
+            font-size: 2.6rem;
+            text-align: center;
+            font-weight: 700;
+            color: var(--navigo-blue);
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .hero-desc {
+            font-size: 1.4rem;
+            text-align: center;
+            max-width: 600px;
+            color: var(--navigo-dark);
+            margin-bottom: 30px;
+        }
+
+        /* ---- CARRUSEL INFO NAVEGO ---- */
+        .info-carrusel {
+            background: #e8f7fb;
+            padding: 0 0 40px 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .carrusel-container {
+            position: relative;
+            width: 950px;
+            max-width: 98vw;
+            min-height: 350px;
+            display: flex;
+            align-items: center;
+            margin: 0 auto;
+        }
+
+        .carrusel-slide {
+            background: #fff;
+            box-shadow: 0 4px 24px #1e90c232;
+            border-radius: 22px;
+            display: none;
+            flex: 1;
+            align-items: stretch;
+            padding: 35px 30px;
+            min-height: 310px;
+            margin: 20px 0;
+            gap: 42px;
+            transition: box-shadow 0.3s;
+        }
+
+        .carrusel-slide.active {
+            display: flex;
+            animation: carruselFade 0.8s;
+        }
+
+        @keyframes carruselFade {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .carrusel-texto {
+            flex: 2;
+            padding-right: 18px;
+            min-width: 270px;
+        }
+
+        .carrusel-texto h2 {
+            color: var(--navigo-blue);
+            font-size: 1.45rem;
+            margin-bottom: 11px;
+            font-weight: 700;
+        }
+
+        .carrusel-texto p {
+            font-size: 1.09rem;
+            margin-bottom: 9px;
+        }
+
+        .carrusel-texto ul {
+            padding-left: 17px;
+            color: #186d94;
+            margin-bottom: 0;
+            font-size: 1.03rem;
+        }
+
+        .carrusel-imgs {
+            flex: 1.5;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 13px;
+            align-items: center;
+            justify-content: flex-end;
+        }
+
+        .carrusel-imgs img {
+            width: 120px;
+            height: 170px;
+            object-fit: cover;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: box-shadow 0.2s, transform 0.16s;
+            box-shadow: 0 2px 16px #1e90c215;
+            background: #f6fafd;
+            border: 2.5px solid #d4f3fa;
+        }
+
+        .carrusel-imgs img:hover {
+            box-shadow: 0 8px 26px #0abde5a1;
+            transform: scale(1.045);
+            border-color: var(--navigo-aqua);
+        }
+
+        .carrusel-btn {
+            background: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 44px;
+            height: 44px;
+            font-size: 2rem;
+            color: var(--navigo-blue);
+            position: absolute;
+            top: 48%;
+            z-index: 5;
+            box-shadow: 0 3px 16px #1e90c230;
+            cursor: pointer;
+            transition: background 0.15s, color 0.2s;
+        }
+
+        .carrusel-btn:hover {
+            background: var(--navigo-blue);
+            color: #fff;
+        }
+
+        .carrusel-btn.prev {
+            left: -25px;
+        }
+
+        .carrusel-btn.next {
+            right: -25px;
+        }
+
+        /* BENEFICIOS */
+        .beneficios {
+            display: flex;
+            gap: 38px;
+            justify-content: center;
+            padding: 28px 7vw 34px 7vw;
+            flex-wrap: wrap;
+        }
+
+        .beneficio {
+            background: #fff;
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 3px 24px #1e90c222;
+            font-size: 1.08rem;
+            color: var(--navigo-blue);
+            text-align: center;
+            font-weight: 600;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 4px solid #d2f2fa;
+        }
+
+        .beneficio:hover {
+            transform: translateY(-7px) scale(1.04);
+            box-shadow: 0 8px 30px #2ee0e644;
+            background: var(--navigo-aqua);
+            color: #fff;
+        }
+
+        .beneficio i {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        /* GALERÍA */
+        .gallery-section {
+            padding: 46px 7vw 40px 7vw;
+            background: #f2fcff;
+            text-align: center;
+        }
+
+        .gallery-title {
+            font-size: 2.1rem;
+            color: var(--navigo-blue);
+            font-weight: 700;
+            margin-bottom: 7px;
+        }
+
+        .gallery-desc {
+            color: #206082;
+            margin-bottom: 33px;
+            font-size: 1.15rem;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 28px;
+            margin: 0 auto;
+            max-width: 960px;
+        }
+
+        .gallery-card {
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 3px 16px #1e90c222;
+            overflow: hidden;
+            transition: transform 0.18s, box-shadow 0.18s;
+            text-align: center;
+            padding-bottom: 20px;
+        }
+
+        .gallery-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 20px 20px 0 0;
+            cursor: pointer;
+            transition: box-shadow 0.2s, transform 0.16s;
+            background: #f6fafd;
+        }
+
+        .gallery-card img:hover {
+            box-shadow: 0 8px 26px #0abde5a1;
+            transform: scale(1.045);
+            border-color: var(--navigo-aqua);
+        }
+
+        .gallery-card h3 {
+            margin: 15px 0 8px 0;
+            color: var(--navigo-blue);
+            font-size: 1.15rem;
+            font-weight: 700;
+        }
+
+        .gallery-card p {
+            color: #194b5c;
+            font-size: 0.99rem;
+            padding: 0 8px;
+        }
+
+        .gallery-card:hover {
+            transform: translateY(-6px) scale(1.04);
+            box-shadow: 0 10px 32px #2ee0e644;
+        }
+
+        /* VALORES */
+        .valores-section {
+            background: linear-gradient(120deg, var(--navigo-blue) 90%, var(--navigo-aqua) 100%);
+            color: #fff;
+            padding: 60px 5vw 60px 5vw;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .valores-title {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 14px;
+        }
+
+        .valores-txt {
+            font-size: 1.16rem;
+            max-width: 780px;
+            margin: 0 auto;
+            color: #f0fbfe;
+        }
+
+        /* CONTACTO */
+        .contact-section {
+            background: var(--navigo-gray);
+            padding: 60px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .contact-title {
+            color: var(--navigo-blue);
+            font-size: 2rem;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .contact-desc {
+            font-size: 1.13rem;
+            color: #206082;
+            margin-bottom: 28px;
+        }
+
+        .contact-form {
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 3px 18px #1e90c226;
+            padding: 32px 32px 18px 32px;
+            max-width: 410px;
+            width: 98vw;
+            display: flex;
+            flex-direction: column;
+            gap: 13px;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            font-family: inherit;
+            font-size: 1rem;
+            padding: 13px;
+            border-radius: 30px;
+            border: 1.5px solid #d2f2fa;
+            background: #f7fcfd;
+            margin-bottom: 9px;
+            outline: none;
+            transition: border 0.18s;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            border: 1.5px solid var(--navigo-blue);
+        }
+
+        .contact-form textarea {
+            min-height: 65px;
+            resize: vertical;
+        }
+
+        .contact-form button {
+            background: var(--navigo-blue);
+            color: #fff;
+            font-weight: bold;
+            border: none;
+            border-radius: 30px;
+            padding: 14px;
+            font-size: 1.09rem;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background 0.18s;
+        }
+
+        .contact-form button:hover {
+            background: var(--navigo-aqua);
+            color: #194b5c;
+        }
+
+        footer {
+            background: #e3f4fa;
+            color: #147aac;
+            font-size: 1.05rem;
+            text-align: center;
+            padding: 28px 0 12px 0;
+            letter-spacing: 1px;
+            margin-top: 30px;
+        }
+
+        /* MODAL VIDEO/IMAGES */
+        .modal-bg {
+            display: none;
+            position: fixed;
+            z-index: 999;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(17, 79, 138, 0.78);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-bg.active {
+            display: flex;
+        }
+
+        .modal-video {
+            background: #fff;
+            border-radius: 18px;
+            padding: 18px 18px 12px 18px;
+            max-width: 90vw;
+            max-height: 80vh;
+            position: relative;
+            box-shadow: 0 8px 64px #0009;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .modal-video video {
+            max-width: 650px;
+            width: 72vw;
+            max-height: 58vh;
+            border-radius: 10px;
+            background: #000;
+        }
+
+        .modal-gallery-img {
+            max-width: 90vw;
+            max-height: 77vh;
+            border-radius: 18px;
+            box-shadow: 0 6px 32px #1e90c2a6;
+            background: #fff;
+        }
+
+        .close-modal,
+        .gallery-arrow {
+            position: absolute;
+            top: 7px;
+            background: none;
+            border: none;
+            color: #1e90c2;
+            font-size: 2.3rem;
+            cursor: pointer;
+            font-family: 'Arial Black', Arial, sans-serif;
+            z-index: 2;
+            transition: color 0.25s;
+        }
+
+        .close-modal:hover {
+            color: #fa5b5b;
+        }
+
+        .gallery-arrow {
+            font-size: 2.5rem;
+            top: 45%;
+            background: rgba(255, 255, 255, 0.7);
+        }
+
+        .gallery-arrow.left {
+            left: 10px;
+        }
+
+        .gallery-arrow.right {
+            right: 10px;
+        }
+
+        @media (max-width: 900px) {
+            .beneficios {
+                gap: 20px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .gallery-card img {
+                height: 180px;
+            }
+
+            .hero-title {
+                font-size: 2.1rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            header {
+                flex-direction: column;
+                gap: 18px;
+                padding: 13px 2vw 10px 2vw;
+            }
+
+            .logo {
+                font-size: 1.3rem;
+            }
+
+            .hero-title {
+                font-size: 1.18rem;
+            }
+
+            .hero-desc {
+                font-size: 1rem;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-card img {
+                height: 120px;
+            }
+
+            .valores-title,
+            .contact-title {
+                font-size: 1.18rem;
+            }
+
+            .modal-video video,
+            .modal-gallery-img {
+                width: 95vw;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- HEADER -->
+    <header>
+        <span class="logo">Navigo Essence</span>
+        <nav>
+            <a href="#beneficios">Beneficios</a>
+            <a href="#galeria">Galería</a>
+            <a href="#valores">Valores</a>
+            <a href="#contacto">Contacto</a>
+            <button class="btn-main" onclick="abrirModal()">Comenzar</button>
+        </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Logo_Navigo_%282018%29.svg/1200px-Logo_Navigo_%282018%29.svg.png"
+            alt="Perfume Navigo" />
+        <div class="hero-title">Descubre Navigo Essence</div>
+        <div class="hero-desc">Una fragancia fresca, moderna y sofisticada. Transforma tu presencia y deja una huella
+            inolvidable, cada día.</div>
+        <button class="btn-main" onclick="abrirModal()">Comenzar</button>
+    </section>
+
+    <!-- INFO CARRUSEL NAVEGO -->
+    <section class="info-carrusel" id="info-navigo">
+        <div class="carrusel-container">
+            <button class="carrusel-btn prev" onclick="cambiarCarrusel(-1)">&#10094;</button>
+            <div class="carrusel-slide active">
+                <div class="carrusel-texto">
+                    <h2>Navigo Ocean Femme</h2>
+                    <p>
+                        <strong>Navigo Ocean Femme</strong> destaca por sus notas frescas, acuáticas y cítricas. Su
+                        fragancia está pensada para mujeres modernas y libres, con un aroma que evoca la brisa marina y
+                        la energía del océano. Sus notas de salida combinan cítricos jugosos y flores blancas, mientras
+                        que el fondo revela sutiles acordes amaderados que otorgan profundidad y elegancia.
+                    </p>
+                    <ul>
+                        <li><b>Familia Olfativa:</b> Acuática, Floral, Cítrica</li>
+                        <li><b>Notas:</b> Limón, Mandarina, Jazmín, Almizcle</li>
+                        <li><b>Duración:</b> 6-8 horas</li>
+                    </ul>
+                </div>
+                <div class="carrusel-imgs">
+                    <img src="https://img.ltwebstatic.com/images3_spmp/2023/10/13/44/16971373820d3b57f49d015c5164f482d5c65ca981_thumbnail_720x.jpg"
+                        alt="Navigo Ocean Femme" onclick="ampliarImgCarrusel(this)">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT03CAZS03oQRPd3zrxEdZy8Aty5xIW_jlXRg&s"
+                        alt="Navigo Ocean Mujer" onclick="ampliarImgCarrusel(this)">
+                </div>
+            </div>
+            <div class="carrusel-slide">
+                <div class="carrusel-texto">
+                    <h2>Navigo Luxus Homme</h2>
+                    <p>
+                        <strong>Navigo Luxus</strong> es la versión más intensa y sofisticada. Su aroma combina notas
+                        amaderadas, especiadas y un toque moderno gourmand, ideal para quienes buscan una presencia
+                        impactante. Perfecta para la noche o eventos especiales.
+                    </p>
+                    <ul>
+                        <li><b>Familia Olfativa:</b> Amaderada, Especiada, Gourmand</li>
+                        <li><b>Notas:</b> Cedro, Pimienta negra, Vainilla, Ámbar</li>
+                        <li><b>Duración:</b> 10 horas+</li>
+                    </ul>
+                </div>
+                <div class="carrusel-imgs">
+                    <img src="https://http2.mlstatic.com/D_Q_NP_699084-MLA84232062041_042025-O.webp"
+                        alt="Navigo Luxus Homme" onclick="ampliarImgCarrusel(this)">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8BZ9rG9sRPehpd73AbZHd77tz9rxgDcqiEs5HakaLUUXJ4HhpxZ1M06k2GM9WH_WI7rs&usqp=CAU"
+                        alt="Navigo Luxus" onclick="ampliarImgCarrusel(this)">
+                    <img src="https://media-photos.depop.com/b1/47022295/1785432606_01beb99a6c274a85a5993ba117c8da7c/P0.jpg"
+                        alt="Navigo Logo" onclick="ampliarImgCarrusel(this)">
+                </div>
+            </div>
+            <div class="carrusel-slide">
+                <div class="carrusel-texto">
+                    <h2>Navigo Moon Femme</h2>
+                    <p>
+                        <strong>Navigo Moon Femme</strong> tiene un perfil más dulce y envolvente, combinando notas
+                        gourmand (vainilla, caramelo) con flores blancas y frutos rojos. Es una fragancia romántica,
+                        cálida y perfecta para las noches o días frescos.
+                    </p>
+                    <ul>
+                        <li><b>Familia Olfativa:</b> Gourmand, Floral, Frutal</li>
+                        <li><b>Notas:</b> Frambuesa, Magnolia, Vainilla, Caramelo</li>
+                        <li><b>Duración:</b> 8 horas</li>
+                    </ul>
+                </div>
+                <div class="carrusel-imgs">
+                    <img src="https://http2.mlstatic.com/D_NQ_NP_620332-MLM46310615831_062021-O-navigo-femme-navigo-moon-mujer-jafra-envio-gratis.webp"
+                        alt="Navigo Moon Femme" onclick="ampliarImgCarrusel(this)">
+                    <img src="https://www.obsequiosvero.com/cdn/shop/products/DUONAVIGOMOONJAFRAOBSEQUIOSVERO.jpg?v=1666315980"
+                        alt="Navigo Moon" onclick="ampliarImgCarrusel(this)">
+                </div>
+            </div>
+
+            <!-- Slide Navigo Classic -->
+            <div class="carrusel-slide">
+                <div class="carrusel-texto">
+                    <h2>Navigo Classic</h2>
+                    <p>
+                        <strong>Navigo Classic</strong> es el aroma insignia. Refrescante y versátil, para quienes
+                        buscan un sello personal único, ideal para uso diario o para regalar.
+                    </p>
+                    <ul>
+                        <li><b>Familia Olfativa:</b> Cítrica, Fresca</li>
+                        <li><b>Notas:</b> Limón, Bergamota, Notas verdes</li>
+                        <li><b>Duración:</b> 6-7 horas</li>
+                    </ul>
+                </div>
+                <div class="carrusel-imgs">
+                    <img src="https://http2.mlstatic.com/D_NQ_NP_964187-MLM80128114000_112024-O-jafra-navigo-homme-clasico-100-ml-eau-de-toilette-spray.webp"
+                        alt="Navigo Classic" onclick="ampliarImgCarrusel(this)">
+                </div>
+            </div>
+            <!-- Slide Navigo Blue -->
+            <div class="carrusel-slide">
+                <div class="carrusel-texto">
+                    <h2>Navigo Blue</h2>
+                    <p>
+                        <strong>Navigo Blue</strong> resalta notas acuáticas y frescas. Inspirado en el océano y la
+                        libertad sin límites, es juvenil y perfecto para cualquier ocasión.
+                    </p>
+                    <ul>
+                        <li><b>Familia Olfativa:</b> Acuática, Cítrica</li>
+                        <li><b>Notas:</b> Notas marinas, Limón, Mandarina</li>
+                        <li><b>Duración:</b> 7-8 horas</li>
+                    </ul>
+                </div>
+                <div class="carrusel-imgs">
+                    <img src="https://http2.mlstatic.com/D_882238-MLA74780215413_022024-C.jpg" alt="Navigo Blue"
+                        onclick="ampliarImgCarrusel(this)">
+                </div>
+            </div>
+            <!-- Slide Navigo Euphoria -->
+            <div class="carrusel-slide">
+                <div class="carrusel-texto">
+                    <h2>Navigo Euphoria</h2>
+                    <p>
+                        <strong>Navigo Euphoria</strong> es una explosión de alegría y frescura. Notas chispeantes y
+                        juveniles para quienes aman vivir intensamente y destacar.
+                    </p>
+                    <ul>
+                        <li><b>Familia Olfativa:</b> Frutal, Floral</li>
+                        <li><b>Notas:</b> Manzana verde, Jazmín, Almizcle</li>
+                        <li><b>Duración:</b> 6 horas</li>
+                    </ul>
+                </div>
+                <div class="carrusel-imgs">
+                    <img src="https://m.media-amazon.com/images/I/81Rg9XjADnL._AC_UF1000,1000_QL80_.jpg"
+                        alt="Navigo Euphoria" onclick="ampliarImgCarrusel(this)">
+                </div>
+            </div>
+
+            <!-- Puedes agregar más slides aquí -->
+            <button class="carrusel-btn next" onclick="cambiarCarrusel(1)">&#10095;</button>
+        </div>
+    </section>
+
+    <!-- BENEFICIOS -->
+    <section class="beneficios" id="beneficios">
+        <div class="beneficio"><i>🌊</i>Frescura Única</div>
+        <div class="beneficio"><i>💎</i>Elegancia Premium</div>
+        <div class="beneficio"><i>🌱</i>Ingredientes Naturales</div>
+        <div class="beneficio"><i>🕓</i>Larga Duración</div>
+    </section>
+
+    <!-- GALERÍA -->
+    <section class="gallery-section" id="galeria">
+        <div class="gallery-title">Colección Navigo</div>
+        <div class="gallery-desc">
+            Conoce las presentaciones y ediciones exclusivas. Perfumes diseñados para cada personalidad y ocasión
+            especial.
+        </div>
+        <div class="gallery-grid" id="galleryGrid">
+            <div class="gallery-card">
+                <img src="https://http2.mlstatic.com/D_NQ_NP_964187-MLM80128114000_112024-O-jafra-navigo-homme-clasico-100-ml-eau-de-toilette-spray.webp"
+                    alt="Navigo Classic" onclick="abrirModalGaleria(0)">
+                <h3>Navigo Classic</h3>
+                <p>El aroma insignia. Refrescante, versátil, para quienes buscan un sello personal único.</p>
+            </div>
+            <div class="gallery-card">
+                <img src="https://http2.mlstatic.com/D_882238-MLA74780215413_022024-C.jpg" alt="Navigo Blue"
+                    onclick="abrirModalGaleria(1)">
+                <h3>Navigo Blue</h3>
+                <p>Notas acuáticas y frescas. Inspirado en el océano y la libertad sin límites.</p>
+            </div>
+            <div class="gallery-card">
+                <img src="https://http2.mlstatic.com/D_Q_NP_699084-MLA84232062041_042025-O.webp" alt="Navigo Intense"
+                    onclick="abrirModalGaleria(2)">
+                <h3>Navigo Luxus Homme</h3>
+                <p>Fragancia intensa, sofisticada y elegante, para ocasiones memorables.</p>
+            </div>
+
+            <div class="gallery-card">
+                <img src="https://http2.mlstatic.com/D_NQ_NP_620332-MLM46310615831_062021-O-navigo-femme-navigo-moon-mujer-jafra-envio-gratis.webp"
+                    alt="Navigo Moon Femme" onclick="abrirModalGaleria(3)">
+                <h3>Navigo Moon Femme</h3>
+                <p>Una fragancia romántica y envolvente, con notas dulces de vainilla, caramelo y frutos rojos. Perfecta
+                    para noches o días frescos.</p>
+            </div>
+            <div class="gallery-card">
+                <img src="https://img.ltwebstatic.com/images3_spmp/2023/10/13/44/16971373820d3b57f49d015c5164f482d5c65ca981_thumbnail_720x.jpg"
+                    alt="Navigo Ocean Femme" onclick="abrirModalGaleria(4)">
+                <h3>Navigo Ocean Femme</h3>
+                <p>Frescura cítrica y floral. Inspirada en el océano y la libertad. Aroma moderno y energético, para
+                    mujeres auténticas y libres.</p>
+            </div>
+
+            <div class="gallery-card">
+                <img src="https://m.media-amazon.com/images/I/81Rg9XjADnL._AC_UF1000,1000_QL80_.jpg"
+                    alt="Navigo Euphoria" onclick="abrirModalGaleria(5)">
+                <h3>Navigo Euphoria</h3>
+                <p>Una explosión de alegría y frescura. Notas chispeantes y juveniles para quienes aman vivir
+                    intensamente.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- VALORES -->
+    <section class="valores-section" id="valores">
+        <div class="valores-title">Valores Navigo</div>
+        <div class="valores-txt">
+            En Navigo Essence creemos en el respeto, la autenticidad y el bienestar. Cada fragancia es el resultado de
+            una búsqueda constante por la excelencia, fusionando naturaleza y tecnología para ofrecerte calidad y
+            confianza.<br><br>
+            Nuestro compromiso es inspirar seguridad, frescura y elegancia en cada persona que elige Navigo.
+        </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section class="contact-section" id="contacto">
+        <div class="contact-title">Contáctanos</div>
+        <div class="contact-desc">¿Quieres saber más o recibir asesoría personalizada? Completa el formulario y nuestro
+            equipo te contactará a la brevedad.</div>
+        <form class="contact-form" autocomplete="off">
+            <input type="text" placeholder="Nombre*" required>
+            <input type="email" placeholder="Correo*" required>
+            <textarea placeholder="Mensaje*" required></textarea>
+            <button type="submit">Enviar</button>
+        </form>
+    </section>
+
+    <footer>
+        © 2025 Navigo Essence. Todos los derechos reservados.
+    </footer>
+
+    <!-- MODAL PARA IMÁGENES DE CARRUSEL Y GALERÍA -->
+    <div class="modal-bg" id="modalImg">
+        <div class="modal-video" style="max-width:900px; background:#fff;">
+            <button class="close-modal" onclick="cerrarModalImg()">×</button>
+            <button class="gallery-arrow left" style="display:none" onclick="moverImgGaleria(-1)">&#10094;</button>
+            <img id="imgAmpliada" class="modal-gallery-img" src="" alt="Imagen ampliada">
+            <button class="gallery-arrow right" style="display:none" onclick="moverImgGaleria(1)">&#10095;</button>
+        </div>
+    </div>
+
+    <script>
+        // --- Carrusel Informativo ---
+        let idxActual = 0;
+        function cambiarCarrusel(dir) {
+            let slides = document.querySelectorAll('.carrusel-slide');
+            slides[idxActual].classList.remove('active');
+            idxActual += dir;
+            if (idxActual < 0) idxActual = slides.length - 1;
+            if (idxActual >= slides.length) idxActual = 0;
+            slides[idxActual].classList.add('active');
+        }
+        // --- MODAL para imágenes de carrusel (solo una imagen, sin navegación) ---
+        function ampliarImgCarrusel(img) {
+            document.getElementById('imgAmpliada').src = img.src;
+            document.getElementById('modalImg').classList.add('active');
+            mostrarFlechasGaleria(false);
+        }
+        // --- MODAL para galería: abrir con todas las imágenes navegables ---
+        let galeriaImgs = [
+            "https://http2.mlstatic.com/D_NQ_NP_964187-MLM80128114000_112024-O-jafra-navigo-homme-clasico-100-ml-eau-de-toilette-spray.webp",
+            "https://http2.mlstatic.com/D_882238-MLA74780215413_022024-C.jpg",
+            "https://http2.mlstatic.com/D_Q_NP_699084-MLA84232062041_042025-O.webp",
+            "https://http2.mlstatic.com/D_NQ_NP_620332-MLM46310615831_062021-O-navigo-femme-navigo-moon-mujer-jafra-envio-gratis.webp",
+            "https://img.ltwebstatic.com/images3_spmp/2023/10/13/44/16971373820d3b57f49d015c5164f482d5c65ca981_thumbnail_720x.jpg",
+            "https://m.media-amazon.com/images/I/81Rg9XjADnL._AC_UF1000,1000_QL80_.jpg"
+
+        ];
+        let galeriaActual = 0;
+        function abrirModalGaleria(idx) {
+            galeriaActual = idx;
+            document.getElementById('imgAmpliada').src = galeriaImgs[galeriaActual];
+            document.getElementById('modalImg').classList.add('active');
+            mostrarFlechasGaleria(true);
+        }
+        function moverImgGaleria(dir) {
+            galeriaActual += dir;
+            if (galeriaActual < 0) galeriaActual = galeriaImgs.length - 1;
+            if (galeriaActual >= galeriaImgs.length) galeriaActual = 0;
+            document.getElementById('imgAmpliada').src = galeriaImgs[galeriaActual];
+        }
+        function mostrarFlechasGaleria(mostrar) {
+            let l = document.querySelector('.gallery-arrow.left');
+            let r = document.querySelector('.gallery-arrow.right');
+            l.style.display = mostrar ? 'block' : 'none';
+            r.style.display = mostrar ? 'block' : 'none';
+        }
+        function cerrarModalImg() {
+            document.getElementById('modalImg').classList.remove('active');
+        }
+        document.getElementById('modalImg').addEventListener('click', function (e) {
+            if (e.target === this) cerrarModalImg();
+        });
+        document.addEventListener('keydown', function (e) {
+            if (e.key === "Escape") cerrarModalImg();
+        });
+        // Inicializa slide activo
+        document.querySelectorAll('.carrusel-slide')[0].classList.add('active');
+    </script>
+
+    <!-- MODAL VIDEO -->
+    <div class="modal-bg" id="modalBg">
+        <div class="modal-video">
+            <button class="close-modal" onclick="cerrarModal()">×</button>
+            <video id="navigoVideo" controls poster="https://i.imgur.com/2xTtOyk.png">
+                <source src="https://www.tiktok.com/@jafra_mx/video/7468747649148112134?lang=es" type="video/mp4">
+                Tu navegador no soporta video.
+            </video>
+        </div>
+    </div>
+    <script>
+        function abrirModal() {
+            document.getElementById('modalBg').classList.add('active');
+            setTimeout(() => {
+                document.getElementById('navigoVideo').play();
+            }, 200);
+        }
+        function cerrarModal() {
+            document.getElementById('modalBg').classList.remove('active');
+            let v = document.getElementById('navigoVideo');
+            v.pause();
+            v.currentTime = 0;
+        }
+        document.getElementById('modalBg').addEventListener('click', function (e) {
+            if (e.target === this) cerrarModal();
+        });
+        document.addEventListener('keydown', function (e) {
+            if (e.key === "Escape") cerrarModal();
+        });
+    </script>
+</body>
+
+</html>
