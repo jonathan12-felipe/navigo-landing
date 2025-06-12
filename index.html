@@ -935,31 +935,25 @@
     <div class="modal-bg" id="modalBg">
         <div class="modal-video">
             <button class="close-modal" onclick="cerrarModal()">×</button>
-<iframe 
-    id="navigoVideo"
-    width="560" 
-    height="315" 
-    src="https://www.youtube.com/embed/YtzTlNbGz84?autoplay=1" 
-    title="YouTube video player"
-    frameborder="0"
-    allow="autoplay; encrypted-media"
-    allowfullscreen>
-</iframe>
-
+             <div id="videoContainer"></div>
         </div>
     </div>
     <script>
         function abrirModal() {
             document.getElementById('modalBg').classList.add('active');
-            setTimeout(() => {
-                document.getElementById('navigoVideo').play();
-            }, 200);
-        }
+    document.getElementById('videoContainer').innerHTML =
+        `<iframe 
+            width="560" height="315"
+            src="https://www.youtube.com/embed/YtzTlNbGz84?autoplay=1"
+            title="YouTube video player"
+            frameborder="0"
+            allow="autoplay; encrypted-media"
+            allowfullscreen>
+        </iframe>`;
+}
         function cerrarModal() {
             document.getElementById('modalBg').classList.remove('active');
-            let v = document.getElementById('navigoVideo');
-            v.pause();
-            v.currentTime = 0;
+    document.getElementById('videoContainer').innerHTML = ''; 
         }
         document.getElementById('modalBg').addEventListener('click', function (e) {
             if (e.target === this) cerrarModal();
