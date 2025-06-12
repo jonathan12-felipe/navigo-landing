@@ -935,10 +935,17 @@
     <div class="modal-bg" id="modalBg">
         <div class="modal-video">
             <button class="close-modal" onclick="cerrarModal()">×</button>
-            <video id="navigoVideo" controls poster="https://i.imgur.com/2xTtOyk.png">
-                <source src="https://www.youtube.com/watch?v=YtzTlNbGz84" type="video/mp4">
-                Tu navegador no soporta video.
-            </video>
+<iframe 
+    id="navigoVideo"
+    width="560" 
+    height="315" 
+    src="https://www.youtube.com/embed/YtzTlNbGz84?autoplay=1" 
+    title="YouTube video player"
+    frameborder="0"
+    allow="autoplay; encrypted-media"
+    allowfullscreen>
+</iframe>
+
         </div>
     </div>
     <script>
