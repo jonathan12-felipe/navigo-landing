@@ -938,30 +938,30 @@
              <div id="videoContainer"></div>
         </div>
     </div>
-    <script>
-        function abrirModal() {
-            document.getElementById('modalBg').classList.add('active');
-    document.getElementById('videoContainer').innerHTML =
-        `<iframe 
-            width="560" height="315"
-            src="https://www.youtube.com/embed/YtzTlNbGz84?autoplay=1"
-            title="YouTube video player"
-            frameborder="0"
-            allow="autoplay; encrypted-media"
-            allowfullscreen>
-        </iframe>`;
-}
-        function cerrarModal() {
-            document.getElementById('modalBg').classList.remove('active');
-    document.getElementById('videoContainer').innerHTML = ''; 
-        }
-        document.getElementById('modalBg').addEventListener('click', function (e) {
-            if (e.target === this) cerrarModal();
-        });
-        document.addEventListener('keydown', function (e) {
-            if (e.key === "Escape") cerrarModal();
-        });
-    </script>
+  <script>
+    function abrirModal() {
+        document.getElementById('modalBg').classList.add('active');
+        document.getElementById('videoContainer').innerHTML =
+            `<iframe 
+                width="560" height="315"
+                src="https://www.youtube.com/embed/YtzTlNbGz84?autoplay=1"
+                title="YouTube video player"
+                frameborder="0"
+                allow="autoplay; encrypted-media"
+                allowfullscreen>
+            </iframe>`;
+    }
+    function cerrarModal() {
+        document.getElementById('modalBg').classList.remove('active');
+        document.getElementById('videoContainer').innerHTML = '';
+    }
+    document.getElementById('modalBg').addEventListener('click', function (e) {
+        if (e.target === this) cerrarModal();
+    });
+    document.addEventListener('keydown', function (e) {
+        if (e.key === "Escape") cerrarModal();
+    });
+</script>
 </body>
 
 </html>
